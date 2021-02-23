@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "77807363456",
+    "project_id": "linkus-36f33",
+    "storage_bucket": "linkus-36f33.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77807363456:android:d86085517ea7ca44f7cd65",
+        "android_client_info": {
+          "package_name": "linkus.link_us"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77807363456-f7d69e3mg68o9pgh7cg1rojhnoskpo6c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "linkus.link_us",
+            "certificate_hash": "33386e6640e92f1099fd6d1d25d5df5950222e43"
+          }
+        },
+        {
+          "client_id": "77807363456-j0e1vs1fu09s2uokd8domh0f4rdsa7ok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6PLJ89ROZ8dh2RMqcyjU7unCdhxQrUsM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77807363456-j0e1vs1fu09s2uokd8domh0f4rdsa7ok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -38,27 +38,27 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: new Icon(Icons.home),
             label: 'Hjem',
-            backgroundColor: Colors.grey[700],
+            backgroundColor: Colors.grey[850],
           ),
           BottomNavigationBarItem(
             icon: new Icon(Icons.contacts),
             label: 'Kontakter',
-            backgroundColor: Colors.grey[700],
+            backgroundColor: Colors.grey[850],
           ),
           BottomNavigationBarItem(
             icon: new Icon(Icons.person),
             label: 'Min Profil',
-            backgroundColor: Colors.grey[700],
+            backgroundColor: Colors.grey[850],
           ),
           BottomNavigationBarItem(
             icon: new Icon(Icons.pin_drop),
             label: 'GPS',
-            backgroundColor: Colors.grey[700],
+            backgroundColor: Colors.grey[850],
           ),
           BottomNavigationBarItem(
             icon: new Icon(Icons.menu),
             label: 'Meny',
-            backgroundColor: Colors.grey[700],
+            backgroundColor: Colors.grey[850],
           ),
         ],
       ),
