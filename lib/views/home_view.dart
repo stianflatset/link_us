@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-//News feed for businesses
 
-// UI for home site
+// UI for home
 
-class home_view extends StatelessWidget {
+class HomeView extends StatefulWidget {
+  @override
+  _HomeViewState createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.blue,
+    return Center(
+      child: 
+      Text('Du er på nyhetsveggen'),
     );
   }
 }
