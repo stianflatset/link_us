@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:link_us/views/home_view.dart';
-import 'package:link_us/views/contacts_view.dart';
-import 'package:link_us/views/gps_view.dart';
-import 'package:link_us/views/my_profile_view.dart';
-import 'package:link_us/views/menu_view.dart';
+import 'package:link_us/views_main/home_view.dart';
+import 'package:link_us/views_main/contacts_view.dart';
+import 'package:link_us/views_main/gps_view.dart';
+import 'package:link_us/views_main/my_profile_view.dart';
+import 'package:link_us/views_main/menu_view.dart';
 
 class Home extends StatefulWidget {
   @override

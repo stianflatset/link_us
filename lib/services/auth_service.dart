@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Functions for authenticating in firebase
 
@@ -18,12 +17,27 @@ class AuthService {
         email: email,
         password: password
     );
-
     // Update the username
+    Future updateUserName(String name, User currentUser) async {
+      await FirebaseAuth.instance.currentUser.updateProfile(displayName: currentUser.displayName);
+      return currentUser.uid;
+    }
+  }
 
+  // Email & Password Sign in using firebase
+  Future<String> signInWithEmailAndPassword(String email, String password) async {
+    return (await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password)).toString();
   }
-  Future updateUserName(String name, User currentUser) async {
-    await FirebaseAuth.instance.currentUser.updateProfile(displayName: currentUser.displayName);
+
+  // Sign out from the app through firebase
+  Future signOut() async {
+    try {
+      return await _firebaseAuth.signOut();
+    } catch(e) {
+      print(e.toString());
+      return null;
+    }
   }
+
 
 }
