@@ -13,9 +13,12 @@ class _MenuViewState extends State<MenuView> {
   Widget build(BuildContext context) {
     return Center(
       child:
-      RaisedButton(onPressed: () {
+      RaisedButton(
+        child: Text("Logg ut"),
+          onPressed: () {
         context.read<AuthService>().signOut();
-      })
+      }
+      )
       
     );
   }

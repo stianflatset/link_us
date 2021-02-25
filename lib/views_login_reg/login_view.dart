@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:link_us/services/auth_service.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +23,7 @@ class LoginView extends StatelessWidget {
           decoration: buildSignUpInputDecoration("Password"),
         ),
         RaisedButton(
+          child: Text("Logg inn"),
             onPressed: () {
               // Code for signing in
               context.read<AuthService>().signIn(
