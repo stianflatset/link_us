@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:link_us/services/auth_service.dart';
+import 'package:provider/provider.dart';
 // UI for menu
 
 class MenuView extends StatefulWidget {
@@ -12,7 +13,10 @@ class _MenuViewState extends State<MenuView> {
   Widget build(BuildContext context) {
     return Center(
       child:
-      Text('Du er i menyen'),
+      RaisedButton(onPressed: () {
+        context.read<AuthService>().signOut();
+      })
+      
     );
   }
 }

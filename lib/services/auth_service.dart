@@ -3,42 +3,33 @@ import 'package:firebase_auth/firebase_auth.dart';
 // Functions for authenticating in firebase
 
 class AuthService {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth;
 
-  Stream<String> get onAuthStateChange =>
-      _firebaseAuth.authStateChanges().map(
-            (User user) => user?.uid,
-      );
+  AuthService(this._firebaseAuth);
 
-  // Email & password Sign Up from firebase
-  Future<String> createUserWithEmailAndPassword(String email, String password, String name) async {
-    final currentUser = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password
-    );
-    // Update the username
-    Future updateUserName(String name, User currentUser) async {
-      await FirebaseAuth.instance.currentUser.updateProfile(displayName: currentUser.displayName);
-      return currentUser.uid;
-    }
+  Stream<User> get onAuthStateChange => _firebaseAuth.authStateChanges();
+
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
   }
 
-  // Email & Password Sign in using firebase
-  Future<String> signInWithEmailAndPassword(String email, String password) async {
+  //Signing into the app through firebase auth
+  Future<String> signIn({String email, String password}) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch(e) {
+          return "Signed in";
+    } on FirebaseAuthException catch (e) {
       return e.message;
     }
   }
 
-  // Sign out from the app through firebase
-  Future signOut() async {
+  //Sign up into the app through firebase auth
+  Future<String> signUp({String email, String password}) async {
     try {
-      return await _firebaseAuth.signOut();
-    } catch(e) {
-      print(e.toString());
-      return null;
+      await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      return ("Signed up");
+    } on FirebaseAuthException catch (e) {
+      return e.message;
     }
   }
 

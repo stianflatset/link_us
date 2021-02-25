@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:link_us/services/auth_service.dart';
+import 'package:provider/provider.dart';
 // UI for user login
 
 class LoginView extends StatelessWidget {
@@ -25,6 +26,10 @@ class LoginView extends StatelessWidget {
         RaisedButton(
             onPressed: () {
               // Code for signing in
+              context.read<AuthService>().signIn(
+                email: emailController.text,
+                password: passwordController.text
+              );
             }
         ),
       ],
