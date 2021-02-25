@@ -11,8 +11,7 @@ class _MyProfileViewState extends State<MyProfileView> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child:
-      Text('Du er på min profil'),
+        child: Text("Du er på Min Profil"),
     );
   }
 }

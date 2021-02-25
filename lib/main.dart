@@ -13,6 +13,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MyApp());
 }
+// HVIS DU ØNSKER Å JOBBE I HOVEDMENYEN ENDRE LogInRegMenu() TIL Home(). NB: DET ER TO PLASSER DEN SKAL ENDRES!
 
 class MyApp extends StatelessWidget {
   @override
