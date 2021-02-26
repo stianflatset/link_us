@@ -13,61 +13,47 @@ class Home extends StatefulWidget {
 }
 
 //Navigator for the bottom navbar
+//Updates the UI accordingly
 class _HomeState extends State<Home> {
-  int _currentIndex = 0;
-  final List<Widget> _children = [
+  int _selectedItem = 0;
+  var _pages = [
     HomeView(),
     ContactsView(),
     MyProfileView(),
     GpsView(),
-    MenuView(),
+    MenuView()
   ];
+  var _pageController = PageController();
 
+  //building the bottom navbar
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _children[_currentIndex],
+      body: PageView(
+        children: _pages,
+        onPageChanged: (index) {
+          setState(() {
+            _selectedItem = index;
+          });
+        },
+        controller: _pageController,
+      ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: onTabTapped,
-        currentIndex: _currentIndex,
-        type: BottomNavigationBarType.shifting,
-        selectedItemColor: Colors.yellow,
-        iconSize: 26.0,
-        selectedFontSize: 16.0,
-        items: [
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.home),
-            label: 'Hjem',
-            backgroundColor: Colors.grey[850],
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.contacts),
-            label: 'Kontakter',
-            backgroundColor: Colors.grey[850],
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.person),
-            label: 'Min Profil',
-            backgroundColor: Colors.grey[850],
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.pin_drop),
-            label: 'GPS',
-            backgroundColor: Colors.grey[850],
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.menu),
-            label: 'Meny',
-            backgroundColor: Colors.grey[850],
-          ),
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Hjem', backgroundColor: Colors.grey[800]),
+          BottomNavigationBarItem(icon: Icon(Icons.contacts), label: 'Kontakter', backgroundColor: Colors.grey[800]),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Min Profil', backgroundColor: Colors.grey[800]),
+          BottomNavigationBarItem(icon: Icon(Icons.pin_drop), label: 'GPS', backgroundColor: Colors.grey[800]),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Meny', backgroundColor: Colors.grey[800]),
         ],
+        currentIndex: _selectedItem,
+        onTap: (index) {
+          setState(() {
+            _selectedItem = index;
+            _pageController.animateToPage(_selectedItem, duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+          });
+        },
       ),
     );
-  }
-
-  void onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
   }
 }
