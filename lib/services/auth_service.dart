@@ -7,13 +7,15 @@ class AuthService {
 
   AuthService(this._firebaseAuth);
 
+  // Stream updates the app if anythings changes to the Auth state
   Stream<User> get onAuthStateChange => _firebaseAuth.authStateChanges();
 
+  // Sign out from the application
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
 
-  //Signing into the app through firebase auth
+  //Signing into the app through firebase auth with email and password
   Future<String> signIn({String email, String password}) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
@@ -23,7 +25,7 @@ class AuthService {
     }
   }
 
-  //Sign up into the app through firebase auth
+  //Sign up into the app through firebase auth with email and password
   Future<String> signUp({String email, String password}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);

@@ -38,7 +38,12 @@ class _HomeState extends State<Home> {
         },
         controller: _pageController,
       ),
+      // Create and styling the Bottom Nav Bar
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
+        selectedItemColor: Colors.yellow,
+        iconSize: 26.0,
+        selectedFontSize: 16.0,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Hjem', backgroundColor: Colors.grey[800]),
           BottomNavigationBarItem(icon: Icon(Icons.contacts), label: 'Kontakter', backgroundColor: Colors.grey[800]),
@@ -50,7 +55,7 @@ class _HomeState extends State<Home> {
         onTap: (index) {
           setState(() {
             _selectedItem = index;
-            _pageController.animateToPage(_selectedItem, duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+            _pageController.jumpToPage(_selectedItem);
           });
         },
       ),
