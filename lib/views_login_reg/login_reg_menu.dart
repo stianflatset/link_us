@@ -29,7 +29,7 @@ class _LoginRegMenuState extends State<LoginRegMenu> {
             children: <Widget>[
               // Top of the stack - Logo
               Positioned(
-                top: 20,
+                top: 40,
                 left: 25,
                 right: 25,
                 child: Container(
@@ -43,9 +43,9 @@ class _LoginRegMenuState extends State<LoginRegMenu> {
               ),
               // Show either Logg inn or Registrer
               Positioned(
-                top: _height*0.20,
+                top: _height*0.25,
                 child: Container(
-                  height: _height*0.75,
+                  height: _height*0.68,
                   padding: EdgeInsets.all(20),
                   width: _width * 0.9,
                   margin: EdgeInsets.symmetric(horizontal: 20),

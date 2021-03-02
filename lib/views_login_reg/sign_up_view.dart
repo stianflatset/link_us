@@ -1,83 +1,160 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:link_us/services/auth_service.dart';
+import 'package:link_us/services/palette.dart';
+import 'package:provider/provider.dart';
 
 // UI for registering a new user in the app
 
-class SignUpView extends StatefulWidget {
-  @override
-  _SignUpViewState createState() => _SignUpViewState();
-}
+class SignUpView extends StatelessWidget {
 
-class _SignUpViewState extends State<SignUpView> {
-  final formKey = GlobalKey<FormState>();
-  String _email, _password, _name;
+  final TextEditingController fornavnController = TextEditingController();
+  final TextEditingController etternavnController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController1 = TextEditingController();
+  final TextEditingController passwordController2 = TextEditingController();
+
+
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text("Sign up works"),
-        Form(
-          key: formKey,
+        Expanded(
           child: Column(
-            //children: buildInputs(),
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // Inputfield for Fornavn
+              TextField(
+                controller: fornavnController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person, color: Palette.textColor1,),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Palette.textColor1),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Palette.activeColor, width: 1.5),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                  ),
+                  contentPadding: EdgeInsets.all(10),
+                  hintText: "Fornavn",
+                  hintStyle: TextStyle(fontSize: 14, color: Palette.textColor1),
+                ),
+              ),
+              //Inputfield for Etternavn
+              TextField(
+                controller: etternavnController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person, color: Palette.textColor1,),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Palette.textColor1),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Palette.activeColor, width: 1.5),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                  ),
+                  contentPadding: EdgeInsets.all(10),
+                  hintText: "Etternavn",
+                  hintStyle: TextStyle(fontSize: 14, color: Palette.textColor1),
+                ),
+              ),
+              // Inputfield for email
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.mail, color: Palette.textColor1,),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Palette.textColor1),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Palette.activeColor, width: 1.5),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                  ),
+                  contentPadding: EdgeInsets.all(10),
+                  hintText: "E-post Adresse",
+                  hintStyle: TextStyle(fontSize: 14, color: Palette.textColor1),
+                ),
+              ),
+              // Inputfield for password
+              TextField(
+                controller: passwordController1,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock, color: Palette.textColor1,),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Palette.textColor1),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Palette.activeColor, width: 1.5),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                  ),
+                  contentPadding: EdgeInsets.all(10),
+                  hintText: "Passord",
+                  hintStyle: TextStyle(fontSize: 14, color: Palette.textColor1),
+                ),
+              ),
+              //Inputfield for repeating passord
+              TextField(
+                controller: passwordController2,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock, color: Palette.textColor1,),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Palette.textColor1),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Palette.activeColor, width: 1.5),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                  ),
+                  contentPadding: EdgeInsets.all(10),
+                  hintText: "Gjenta Passord",
+                  hintStyle: TextStyle(fontSize: 14, color: Palette.textColor1),
+                ),
+              ),
+              // Agree to our terms & conditions
+              Container(
+                width: 250,
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    text: "Ved Registrering aksepterer du våre ",
+                    style: TextStyle(color: Palette.textColor1),
+                    children: [
+                      TextSpan(
+                        text: "vilkår & betingelser",
+                        style: TextStyle(color: Palette.yellowColor),
+                      ),
+                    ]
+                  ),
+                ),
+              ),
+              // Button for Registrer
+              TextButton(
+                onPressed: () {
+                  context.read<AuthService>().signUp(
+                    email: emailController.text,
+                    password: passwordController1.text,
+                  );
+                },
+                style: TextButton.styleFrom(
+                  minimumSize: Size(330,40),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)
+                  ),
+                  primary: Colors.white,
+                  backgroundColor: Palette.buttonColor,
+                  elevation: 3,
+                ),
+                child: Text("Registrer", style: TextStyle(fontSize: 18),),
+              ),
+            ],
           ),
-        ),
+        )
       ],
+
     );
   }
-/*
-  List<Widget> buildInputs() {
-    List<Widget> textFields = [];
-    // THIS IS THE USERINPUT TEXTFIELD FOR EMAIL
-    textFields.add(
-      TextFormField(
-        style: TextStyle(fontSize: 22.0),
-        decoration: buildSignUpInputDecoration("Email"),
-        onSaved: (value) => _email = value,
-      ),
-    );
-    // THIS IS THE USERINPUT TEXTFIELD FOR PASSWORD
-    textFields.add(SizedBox(
-      height: 20.0,
-    ));
-    textFields.add(TextFormField(
-      style: TextStyle(fontSize: 22.0),
-      decoration: buildSignUpInputDecoration("Passord"),
-      onSaved: (value) => _password = value,
-    ));
-    textFields.add(SizedBox(
-      height: 20.0,
-    ));
-    textFields.add(TextFormField(
-      style: TextStyle(fontSize: 22.0),
-      decoration: buildSignUpInputDecoration("Passord"),
-      onSaved: (value) => _password = value,
-    ));
-    textFields.add(SizedBox(
-      height: 20.0,
-    ));
-    textFields.add(TextFormField(
-      style: TextStyle(fontSize: 22.0),
-      decoration: buildSignUpInputDecoration("Passord"),
-      onSaved: (value) => _password = value,
-    ));
-
-    return textFields;
-  }
-
-  // THIS IS THE STYLING USED ON THE INPUTFIELDS
-  InputDecoration buildSignUpInputDecoration(String hint) {
-    return InputDecoration(
-      hintText: hint,
-      filled: true,
-      fillColor: Colors.white,
-      focusColor: Colors.white,
-      enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.black, width: 0.0)),
-      contentPadding:
-          const EdgeInsets.only(left: 14.0, bottom: 10.0, top: 10.0),
-    );
-  }*/
 }
-// 38 05 https://www.youtube.com/watch?v=iTYD13w6Duo&t=642s
