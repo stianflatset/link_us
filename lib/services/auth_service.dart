@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:link_us/services/database_manager.dart';
 
 // Functions for authenticating in firebase
 
@@ -9,6 +10,8 @@ class AuthService {
 
   // Stream updates the app if anythings changes to the Auth state
   Stream<User> get onAuthStateChange => _firebaseAuth.authStateChanges();
+
+
 
   // Sign out from the application
   Future<void> signOut() async {
@@ -26,13 +29,14 @@ class AuthService {
   }
 
   //Sign up into the app through firebase auth with email and password
-  Future<String> signUp({String email, String password}) async {
+  Future<String> signUp({String email, String password, String fornavn, String etternavn}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password).then((value) => DatabaseManager().addUser(fornavn, etternavn, email));
       return ("Signed up");
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
+
   }
 
 

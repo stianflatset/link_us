@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:link_us/services/database_manager.dart';
+import 'package:link_us/services/user_info.dart';
 
 // UI for home
 
@@ -8,6 +10,25 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+
+  List userList = [];
+  @override
+  void initState() {
+    super.initState();
+    fetchDatabaseList();
+  }
+  fetchDatabaseList() async {
+    dynamic result = await DatabaseManager().getUser();
+    if(result == null) {
+      print("Unable to retrieve data");
+    } else {
+      setState(() {
+        userList = result;
+      });
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,7 +64,9 @@ class _HomeViewState extends State<HomeView> {
             ],
           ),
         ),
-
+        Container(
+          child: Text(userList.toString()),
+        ),
       ],
     );
   }

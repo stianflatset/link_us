@@ -6,11 +6,16 @@ import 'package:link_us/services/palette.dart';
 import 'package:provider/provider.dart';
 // UI for user login
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
+
+  @override
+  _LoginViewState createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +108,7 @@ class LoginView extends StatelessWidget {
                   ),
                   primary: Colors.white,
                   backgroundColor: Color.fromRGBO(40, 103, 178, 1),
+                  elevation: 3,
                 ),
                 icon: Icon(CommunityMaterialIcons.linkedin),
                 label: Text("Sign in with LinkedIn", style: TextStyle(fontSize: 18.0),),
@@ -119,6 +125,7 @@ class LoginView extends StatelessWidget {
                   ),
                   primary: Colors.white,
                   backgroundColor: Color.fromRGBO(66, 133, 244, 1),
+                  elevation: 3,
                 ),
                 icon: Icon(CommunityMaterialIcons.google),
                 label: Text("Sign in with Google", style: TextStyle(fontSize: 18.0),),
