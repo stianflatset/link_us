@@ -1,34 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DatabaseManager {
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  final firebaseUser = FirebaseAuth.instance.currentUser.uid;
+
 
   Future<void> addUser(String fornavn, String etternavn, String email) {
-    return users.add({
+    return users.doc(firebaseUser).set({
       'fornavn' : fornavn,
       'etternavn' : etternavn,
-      'email' : email
+      'email' : email,
     });
   }
 
   Future getUser() async {
     List userList = [];
-    // print("we here");
     try {
-      // GetFirebaseUser();
-      await users.get().then((QuerySnapshot querySnapshot) => {
-        // print("help"),
-        querySnapshot.docs.forEach((doc) {
-          userList.add(doc.data());
-        })
-      });
-      return userList;
-    } catch (e) {
+      await FirebaseFirestore.instance.collection('users').doc(firebaseUser).get().then((DocumentSnapshot documentSnapshot) {
+        if (documentSnapshot.exists) {
+          userList.add(documentSnapshot.data());
+        }
+      }); return userList;
+    }catch (e) {
       print(e.toString());
-      return null;
     }
   }
-
 }
+
