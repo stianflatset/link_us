@@ -15,12 +15,14 @@ class DatabaseManager {
     });
   }
 
+  
   Future getUser() async {
     List userList = [];
     try {
       await FirebaseFirestore.instance.collection('users').doc(firebaseUser).get().then((DocumentSnapshot documentSnapshot) {
         if (documentSnapshot.exists) {
-          userList.add(documentSnapshot.data());
+          userList.add(documentSnapshot.get('fornavn'));
+          userList.add(documentSnapshot.get('etternavn'));
         }
       }); return userList;
     }catch (e) {

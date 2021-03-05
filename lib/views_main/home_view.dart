@@ -58,18 +58,12 @@ class _HomeViewState extends State<HomeView> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text("Bilde"),
-              Text("Navn"),
+              Text('Picture'),
+              Text('${userList}'),
               Text("Share"),
             ],
           ),
         ),
-        Container(
-          child: Text(userList.toString()),
-        ),
-        Container(
-
-        )
       ],
     );
   }
