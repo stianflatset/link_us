@@ -52,4 +52,15 @@ class HomeController extends StatelessWidget {
   }
 }
 
+class GetFirebaseUser extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final firebaseUser = context.watch<User>();
+    print("WE MADE IT");
+    print(firebaseUser);
+    return Text("yeehaw");
+  }
+}
+
+
 

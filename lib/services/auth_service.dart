@@ -35,6 +35,7 @@ class AuthService {
       return ("Signed up");
     } on FirebaseAuthException catch (e) {
       return e.message;
+
     }
 
   }

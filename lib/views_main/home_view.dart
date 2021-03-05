@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:link_us/services/database_manager.dart';
-import 'package:link_us/services/user_info.dart';
 
 // UI for home
 
@@ -11,6 +10,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
+  // Getting the logged in user info from database
   List userList = [];
   @override
   void initState() {
@@ -20,7 +20,7 @@ class _HomeViewState extends State<HomeView> {
   fetchDatabaseList() async {
     dynamic result = await DatabaseManager().getUser();
     if(result == null) {
-      print("Unable to retrieve data");
+      print("Feil ved innlasting av bruker info");
     } else {
       setState(() {
         userList = result;
@@ -67,6 +67,9 @@ class _HomeViewState extends State<HomeView> {
         Container(
           child: Text(userList.toString()),
         ),
+        Container(
+
+        )
       ],
     );
   }

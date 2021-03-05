@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+
 
 class DatabaseManager {
 
@@ -15,8 +15,11 @@ class DatabaseManager {
 
   Future getUser() async {
     List userList = [];
+    // print("we here");
     try {
+      // GetFirebaseUser();
       await users.get().then((QuerySnapshot querySnapshot) => {
+        // print("help"),
         querySnapshot.docs.forEach((doc) {
           userList.add(doc.data());
         })
@@ -27,7 +30,5 @@ class DatabaseManager {
       return null;
     }
   }
-
-
 
 }
