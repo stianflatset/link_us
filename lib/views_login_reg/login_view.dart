@@ -11,11 +11,12 @@ class LoginView extends StatefulWidget {
   @override
   _LoginViewState createState() => _LoginViewState();
 }
+final TextEditingController emailController = TextEditingController();
+final TextEditingController passwordController = TextEditingController();
+bool _validEmail = false;
+bool _validPassword = false;
 
 class _LoginViewState extends State<LoginView> {
-
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,67 +25,84 @@ class _LoginViewState extends State<LoginView> {
         // Epost - password - login button widgets
         Expanded(
           flex: 3,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              // Inputfield for email
-              TextField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.email, color: Palette.textColor1,),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Palette.textColor1),
-                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+          child: Form(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Inputfield for email
+                Container(
+                  width: MediaQuery.of(context).size.width*0.75,
+                  child: TextFormField(
+                    //validator: EmailValidator.validate,
+                    controller: emailController,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.email, color: Palette.textColor1,),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Palette.textColor1),
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Palette.activeColor, width: 1.5),
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))
+                      ),
+                      contentPadding: EdgeInsets.all(10),
+                      hintText: "E-Post Adresse",
+                      hintStyle: TextStyle(fontSize: 14, color: Palette.textColor1),
+                      errorText: _validEmail ? 'Skriv inn epost-adresse' : null,
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Palette.activeColor, width: 1.5),
-                      borderRadius: BorderRadius.all(Radius.circular(8.0))
-                  ),
-                  contentPadding: EdgeInsets.all(10),
-                  hintText: "E-Post Adresse",
-                  hintStyle: TextStyle(fontSize: 14, color: Palette.textColor1),
                 ),
-              ),
-              // Inputfield for password
-              TextField(
-                controller: passwordController,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock, color: Palette.textColor1,),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Palette.textColor1),
-                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                // Inputfield for password
+                Container(
+                  width: MediaQuery.of(context).size.width*0.75,
+                  child: TextFormField(
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.lock, color: Palette.textColor1,),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Palette.textColor1),
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Palette.activeColor, width: 1.5),
+                          borderRadius: BorderRadius.all(Radius.circular(8.0))
+                      ),
+                      contentPadding: EdgeInsets.all(10),
+                      hintText: "Passord",
+                      hintStyle: TextStyle(fontSize: 14, color: Palette.textColor1),
+                      errorText: _validPassword ? 'Skriv inn passord' : null,
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Palette.activeColor, width: 1.5),
-                      borderRadius: BorderRadius.all(Radius.circular(8.0))
-                  ),
-                  contentPadding: EdgeInsets.all(10),
-                  hintText: "Passord",
-                  hintStyle: TextStyle(fontSize: 14, color: Palette.textColor1),
                 ),
-              ),
-              // Button for logging in
-              TextButton(
-                onPressed: () {
-                  context.read<AuthService>().signIn(
-                    email: emailController.text,
-                    password: passwordController.text,
-                  );
-                },
-                style: TextButton.styleFrom(
-                  minimumSize: Size(220,40),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)
+                // Button for logging in
+                TextButton(
+                  onPressed: () async {
+                    setState(() {
+                      emailController.text.isEmpty ? _validEmail = true : _validEmail = false;
+                      passwordController.text.isEmpty ? _validPassword = true : _validPassword = false;
+                    });
+                    try {
+                    context.read<AuthService>().signIn(
+                      email: emailController.text,
+                      password: passwordController.text,
+                    );} catch (e) {print('help $e');};
+                  },
+                  style: TextButton.styleFrom(
+                    minimumSize: Size(220,40),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)
+                    ),
+                    primary: Colors.white,
+                    backgroundColor: Palette.buttonColor,
+                    elevation: 5,
                   ),
-                  primary: Colors.white,
-                  backgroundColor: Palette.buttonColor,
-                  elevation: 5,
+                  child: Text("LOGG INN", style: TextStyle(fontSize: 18),),
                 ),
-                child: Text("LOGG INN", style: TextStyle(fontSize: 18),),
-              ),
-              // Forgot password
-              Text("Glemt Passord?", style: TextStyle(color: Colors.blueAccent, decoration: TextDecoration.underline),)
-            ],
+                // Forgot password
+                Text("Glemt Passord?", style: TextStyle(color: Colors.blueAccent, decoration: TextDecoration.underline),)
+              ],
+            ),
           ),
         ),
         // Dividing the screen with a divider to show Social Media Logins

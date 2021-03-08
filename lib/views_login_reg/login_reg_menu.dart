@@ -23,6 +23,7 @@ class _LoginRegMenuState extends State<LoginRegMenu> {
 
     //UI for choosing between Logg inn or Registrer
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Container(
           child: Stack(
             //Code for the menu of login/reg
@@ -43,9 +44,9 @@ class _LoginRegMenuState extends State<LoginRegMenu> {
               ),
               // Show either Logg inn or Registrer
               Positioned(
-                top: _height*0.25,
+                top: _height*0.22,
                 child: Container(
-                  height: _height*0.68,
+                  height: _height*0.7,
                   padding: EdgeInsets.all(20),
                   width: _width * 0.9,
                   margin: EdgeInsets.symmetric(horizontal: 20),
@@ -153,8 +154,14 @@ class _LoginRegMenuState extends State<LoginRegMenu> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                Color.fromRGBO(205, 199, 41, 1.0),
-                Color.fromRGBO(170, 210, 30, 1.0),
+                    Color.fromRGBO(183, 179, 25, 1.0),
+                    Color.fromRGBO(205, 199, 41, 1.0),
+                    // yellow 183 179 25
+                    // green 112 173 71
+
+                    // Colors that go from yellow top to green bottom
+                //Color.fromRGBO(205, 199, 41, 1.0),
+                //Color.fromRGBO(170, 210, 30, 1.0),
               ]))),
     );
   }
