@@ -6,4 +6,5 @@ class Palette {
   static const Color textColor2 = Color(0xFFAA9D7E);
   static const Color buttonColor = Color(0xFF70AD47);
   static const Color yellowColor = Color(0xFFB7B319);
+  static const Color navbarColor = Color(0xFF536670);
 }

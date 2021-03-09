@@ -86,7 +86,10 @@ class _LoginViewState extends State<LoginView> {
                     context.read<AuthService>().signIn(
                       email: emailController.text,
                       password: passwordController.text,
-                    );} catch (e) {print('help $e');};
+                    );
+                    emailController.clear();
+                    passwordController.clear();
+                    } catch (e) {print('help $e');}
                   },
                   style: TextButton.styleFrom(
                     minimumSize: Size(220,40),
