@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
     ContactsView(),
     MyProfileView(),
     GpsView(),
-    MenuView()
+    MenuView() 
   ];
   var _pageController = PageController();
 
