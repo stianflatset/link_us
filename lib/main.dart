@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
     );
 
   }
+
 }
 // HomeController checks if firebaseUser has a value
 // If it has a value a user is signed in and can go straight to home

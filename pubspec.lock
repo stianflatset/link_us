@@ -226,6 +226,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.4"
+  nfc_manager:
+    dependency: "direct main"
+    description:
+      name: nfc_manager
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   path:
     dependency: transitive
     description:
@@ -338,4 +345,4 @@ packages:
     version: "2.2.1"
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
-  flutter: ">=1.16.0 <2.0.0"
+  flutter: ">=1.17.0 <2.0.0"
