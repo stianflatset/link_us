@@ -12,6 +12,10 @@ class DatabaseManager {
       'fornavn' : fornavn,
       'etternavn' : etternavn,
       'email' : email,
+      'telefon' : '',
+      'tittel' : '',
+      'firma' : '',
+      'adresse' : '',
     });
   }
 
