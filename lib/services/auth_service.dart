@@ -50,4 +50,11 @@ class AuthService {
       return e.message;
     }
   }
+/*
+  Future<String> getKontaktListe(String brukerId){
+    try{
+
+    }
+
+  }*/
 }
