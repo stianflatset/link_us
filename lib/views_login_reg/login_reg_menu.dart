@@ -23,7 +23,8 @@ class _LoginRegMenuState extends State<LoginRegMenu> {
 
     //UI for choosing between Logg inn or Registrer
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomPadding: false,
       body: Container(
           child: GestureDetector( onTap: (){FocusScope.of(context).unfocus();},
             child: Stack(
@@ -49,8 +50,8 @@ class _LoginRegMenuState extends State<LoginRegMenu> {
                   child: Container(
                     height: _height*0.72,
                     padding: EdgeInsets.all(20),
-                    width: _width * 0.9,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    width: _width * 0.95,
+                    margin: EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(8),
