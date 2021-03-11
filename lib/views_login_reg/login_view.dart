@@ -128,7 +128,7 @@ class _LoginViewState extends State<LoginView> {
                       borderRadius: BorderRadius.circular(8)
                   ),
                   primary: Colors.white,
-                  backgroundColor: Color.fromRGBO(40, 103, 178, 1),
+                  backgroundColor: Palette.linkedinColor,
                   elevation: 3,
                 ),
                 icon: Icon(CommunityMaterialIcons.linkedin),
@@ -145,7 +145,7 @@ class _LoginViewState extends State<LoginView> {
                       borderRadius: BorderRadius.circular(8)
                   ),
                   primary: Colors.white,
-                  backgroundColor: Color.fromRGBO(66, 133, 244, 1),
+                  backgroundColor: Palette.googleColor,
                   elevation: 3,
                 ),
                 icon: Icon(CommunityMaterialIcons.google),

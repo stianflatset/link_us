@@ -31,11 +31,11 @@ class _LoginRegMenuState extends State<LoginRegMenu> {
               children: <Widget>[
                 // Top of the stack - Logo
                 Positioned(
-                  top: 40,
+                  top: 20,
                   left: 25,
                   right: 25,
                   child: Container(
-                    height: _height * 0.15,
+                    height: _height * 0.2,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage("assets/images/liten_logo_hvit.png"),
@@ -47,7 +47,7 @@ class _LoginRegMenuState extends State<LoginRegMenu> {
                 Positioned(
                   top: _height*0.22,
                   child: Container(
-                    height: _height*0.7,
+                    height: _height*0.72,
                     padding: EdgeInsets.all(20),
                     width: _width * 0.9,
                     margin: EdgeInsets.symmetric(horizontal: 20),
