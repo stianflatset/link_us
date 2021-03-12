@@ -17,6 +17,9 @@ class _ContactsViewState extends State<ContactsView> {
       body: Center(
         child: Column(
             children: [
+              SizedBox(
+                height: 50,
+              ),
 
               RaisedButton(
                 onPressed: () {
